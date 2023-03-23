@@ -1,4 +1,4 @@
-FROM amazoncorretto: 19-alpine-jdk
+FROM amazoncorretto: 8-alpine-jdk
 
 COPY target/target/sd-0.0.1-SNAPSHOT.jar app.jar
 
