@@ -15,4 +15,6 @@ public interface IPersonaService {
     
     //Buscar persona por ID
     public Persona findPersona(Long id);
+    
+    public boolean existPersona(Long id);
 }

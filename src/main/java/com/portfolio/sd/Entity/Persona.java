@@ -18,17 +18,14 @@ public class Persona {
     private Long id;
     
     @NotNull
-    @Size(min = 1, max = 50, message = "no cumple con la logitud")
+    @Size(min = 1, max = 50, message = "no cumple con la logitud NOMBRE")
     private String nombre;
     
     @NotNull
-    @Size(min = 1, max = 50, message = "no cumple con la logitud")
+    @Size(min = 1, max = 50, message = "no cumple con la logitud APELLIDO")
     private String apellido;
     
-    @NotNull
-    @Size(min = 1, max = 20000000 , message = "no cumple con la logitud")
     private String about_me;
     
-    @Size(min = 1, max = 255, message = "no cumple con la logitud")
     private String img;
 }

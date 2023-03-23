@@ -27,5 +27,4 @@ public class Educacion {
     @NotNull
     @Size(min = 1, max = 2000, message = "no cumple con la longitud")
     private String img;
-    
 }

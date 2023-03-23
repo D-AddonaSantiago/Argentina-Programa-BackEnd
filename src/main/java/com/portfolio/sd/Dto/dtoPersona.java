@@ -1,33 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.portfolio.sd.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- *
- * @author Usuario
- */
+
 public class dtoPersona {
     @NotBlank
     private String nombre;
     @NotBlank
     private String apellido;
     @NotBlank
-    private String descripcion;
+    private String about_me;
     @NotBlank
     private String img;
 
     public dtoPersona() {
     }
 
-    public dtoPersona(String nombre, String apellido, String descripcion, String img) {
+    public dtoPersona(String nombre, String apellido, String about_me, String img) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.descripcion = descripcion;
+        this.about_me = about_me;
         this.img = img;
     }
 
@@ -47,12 +39,12 @@ public class dtoPersona {
         this.apellido = apellido;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getAbout_me() {
+        return about_me;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setAbout_me(String about_me) {
+        this.about_me = about_me;
     }
 
     public String getImg() {

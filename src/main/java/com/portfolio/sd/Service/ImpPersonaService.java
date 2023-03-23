@@ -5,7 +5,6 @@ import com.portfolio.sd.Entity.Persona;
 import com.portfolio.sd.Interface.IPersonaService;
 import com.portfolio.sd.Repository.IPersonaRepository;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +34,8 @@ public class ImpPersonaService implements IPersonaService{
         return persona;
     }
     
+    @Override
+    public boolean existPersona(Long id) {
+        return ipersonaRepository.existsById(id);
+    }
 }
