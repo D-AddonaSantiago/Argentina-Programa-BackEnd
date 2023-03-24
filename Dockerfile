@@ -1,8 +1,6 @@
 FROM amazoncorretto:11-alpine-jdk
 
-MAINTAINER SD
-
-EXPOSE 8080
+EXPOSE 3306
 
 COPY target/sd-0.0.1-SNAPSHOT.jar app.jar
 
