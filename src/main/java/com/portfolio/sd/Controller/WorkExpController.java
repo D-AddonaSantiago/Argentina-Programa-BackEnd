@@ -35,18 +35,20 @@ public class WorkExpController {
         iworkExpService.deleteWorkExp(id);
     }
     
-    @PutMapping("/work_exp/editar/{id}")
-    public void editWorkExp(@PathVariable Long id,
-                               @RequestParam("titulo") String nuevoTitulo,
-                               @RequestParam("descripcion") String nuevoDescripcion,
-                               @RequestParam("img") String nuevoImg) {
-        WorkExp workExp = iworkExpService.findWorkExp(id);
-        workExp.setTitulo(nuevoTitulo);
-        workExp.setDescripcion(nuevoDescripcion);
-        workExp.setImg(nuevoImg);
+@PutMapping("/work_exp/editar/{id}")
+public void editWorkExp(@PathVariable Long id, @RequestBody WorkExp updatedWorkExp) {
+    WorkExp workExp = iworkExpService.findWorkExp(id);
+    
+    if (workExp != null) {
+        workExp.setTitulo(updatedWorkExp.getTitulo());
+        workExp.setDescripcion(updatedWorkExp.getDescripcion());
+        workExp.setImg(updatedWorkExp.getImg());
         
         iworkExpService.saveWorkExp(workExp);
+    } else {
+        System.out.println("Work experience not found with id: " + id);
     }
+}
     
     @GetMapping("/work_exp/traer/trabajo")
     public WorkExp findWorkExp() {

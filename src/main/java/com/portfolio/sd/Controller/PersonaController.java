@@ -1,4 +1,3 @@
-
 package com.portfolio.sd.Controller;
 
 import com.portfolio.sd.Entity.Persona;
@@ -18,42 +17,44 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = {"https://sdfrontend.web.app", "http://localhost:4200"})
 public class PersonaController {
-    @Autowired ImpPersonaService ipersonaService;
-    
+
+    @Autowired
+    ImpPersonaService ipersonaService;
+
     @GetMapping("/personas/traer")
     public List<Persona> getPersona() {
         return ipersonaService.getPersona();
     }
-    
+
     @PostMapping("/personas/crear")
-    public void createPersona(@RequestBody Persona persona){
+    public void createPersona(@RequestBody Persona persona) {
         ipersonaService.savePersona(persona);
     }
-    
+
     @DeleteMapping("/personas/borrar/{id}")
-    public void deletePersona(@PathVariable Long id){
+    public void deletePersona(@PathVariable Long id) {
         ipersonaService.deletePersona(id);
     }
-    
+
     @PutMapping("/personas/editar/{id}")
-    public void editPesona(@PathVariable Long id,
-                              @RequestParam("nombre") String nuevoNombre,
-                              @RequestParam("apellido") String nuevoApellido,
-                              @RequestParam("about_me") String nuevoAboutMe,
-                              @RequestParam("img") String nuevoImg) {
-        Persona persona = ipersonaService.findPersona(id);
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setAbout_me(nuevoAboutMe);
-        persona.setImg(nuevoImg);
-        
-        ipersonaService.savePersona(persona);
+    public void editPersona(@PathVariable Long id, @RequestBody Persona updatedPersona) {
+        Persona personaExistente = ipersonaService.findPersona(id);
+
+        if (personaExistente != null) {
+            personaExistente.setNombre(updatedPersona.getNombre());
+            personaExistente.setApellido(updatedPersona.getApellido());
+            personaExistente.setAbout_me(updatedPersona.getAbout_me());
+            personaExistente.setImg(updatedPersona.getImg());
+
+            ipersonaService.savePersona(personaExistente);
+        } else {
+            System.out.println("Persona not found with id: " + id);
+        }
     }
-    
+
     @GetMapping("/personas/traer/perfil")
-    public Persona findPersona(){
-        return ipersonaService.findPersona((long)1);
+    public Persona findPersona() {
+        return ipersonaService.findPersona((long) 1);
     }
-    
-    
+
 }

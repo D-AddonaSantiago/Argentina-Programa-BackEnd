@@ -35,16 +35,19 @@ public class EducacionController {
     }         
     
     @PutMapping("/educacion/editar/{id}")
-    public void editEducacion(@PathVariable Long id,
-                              @RequestParam("titulo") String nuevoTitulo,
-                              @RequestParam("descripcion") String nuevoDescripcion,
-                              @RequestParam("img") String nuevoImg) {
+    public void editEducacion(@PathVariable Long id,@RequestBody Educacion updatedEducacion) {
         Educacion educacion = ieducacionService.findEducacion(id);
-        educacion.setTitulo(nuevoTitulo);
-        educacion.setDescripcion(nuevoDescripcion);
-        educacion.setImg(nuevoImg);
         
-        ieducacionService.saveEducacion(educacion);
+        if (educacion != null) {
+            educacion.setTitulo(updatedEducacion.getTitulo());
+            educacion.setDescripcion(updatedEducacion.getDescripcion());
+            educacion.setImg(updatedEducacion.getImg());
+            
+            ieducacionService.saveEducacion(educacion);
+        } else {
+            System.out.println("Educacion not found with id: " + id);
+        }
+        
     }
     
     @GetMapping("/educacion/traer/edu")

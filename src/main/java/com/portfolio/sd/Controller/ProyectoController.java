@@ -34,7 +34,24 @@ public class ProyectoController {
         iproyectoService.deleteProyecto(id);
     }
     
-    @PutMapping("/proyecto/editar/{id}")
+    @PutMapping("proyecto/editar/{id}")
+    public void editProyecto(@PathVariable Long id, @RequestBody Proyecto updatedProyecto) {
+        Proyecto proyectoExistente = iproyectoService.findProyecto(id);
+        
+        if (proyectoExistente != null) {
+            proyectoExistente.setTitulo(updatedProyecto.getTitulo());
+            proyectoExistente.setDescripcion(updatedProyecto.getDescripcion());
+            proyectoExistente.setImg(updatedProyecto.getImg());
+            proyectoExistente.setImg2(updatedProyecto.getImg2());
+            proyectoExistente.setImg3(updatedProyecto.getImg3());
+            
+            iproyectoService.saveProyecto(proyectoExistente);
+        } else {
+            System.out.println("Proyecto not found with id: " + id);
+        }
+    }
+    
+    /*@PutMapping("/proyecto/editar/{id}")
     public void editProyecto(@PathVariable Long id,
                              @RequestParam("titulo") String nuevoTitulo,
                              @RequestParam("descripcion") String nuevoDescripcion,
@@ -49,7 +66,7 @@ public class ProyectoController {
         proyecto.setImg3(nuevoImg3);
         
         iproyectoService.saveProyecto(proyecto);
-    }
+    }*/
     
     @GetMapping("/proyecto/traer/proy")
     public Proyecto findProyecto() {
